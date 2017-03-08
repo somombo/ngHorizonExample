@@ -1,0 +1,23 @@
+version: '2'
+services:
+  rethinkdb:
+    image: rethinkdb
+    container_name: rethinkdb
+    ports:
+      - "28015:28015"
+      - "8080:8080"
+    #volumes:
+    #  - "./data:/data"
+
+  horizon:
+    image: rethinkdb/horizon
+    container_name: horizon
+    command: su -s /bin/sh horizon -c "hz serve --dev --connect rethinkdb://rethinkdb:28015 --secure=no  --bind all --allow-anonymous=yes /usr/app"
+    volumes:
+      - "./:/usr/app"
+    links:
+      - rethinkdb
+    depends_on:
+      - rethinkdb         
+    ports:
+      - "8181:8181"
