@@ -8,6 +8,6 @@ An abstract "Todo" to exemplify realtime capability of horizon/rethinkDB over @a
 - npm/node
 - [docker](https://github.com/docker/docker/releases) / [docker-compose](https://github.com/docker/compose/releases)
 
-# Run
+# To start it...
 Run `npm run stage`
 
