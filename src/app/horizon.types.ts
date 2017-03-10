@@ -1,5 +1,5 @@
-/*
-import { Observable } from 'rxjs';
+import {Observable} from "rxjs";
+
 
 declare namespace hz {
 
@@ -11,7 +11,7 @@ declare namespace hz {
   type Bound = 'open' | 'closed';
   type Direction = 'ascending' | 'descending';
   type Primitive = boolean | number | string | Date;
-  type IdValue = Primitive | Primitive[] | { id: Primitive };
+  type IdValue = Primitive | Primitive[] | Object | { id: Primitive };
   type WriteOp = Object | Object[];
 
   interface TermBase extends Feed {
@@ -82,6 +82,5 @@ export type TermBase = hz.TermBase;
 export type Collection = hz.Collection;
 export type User = hz.User;
 
-declare var Horizon: hz.Horizon;
+export declare var Horizon: hz.Horizon;
 export default Horizon;
-*/

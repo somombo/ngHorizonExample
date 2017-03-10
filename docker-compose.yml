@@ -8,11 +8,12 @@ services:
       - "8080:8080"
     #volumes:
     #  - "./data:/data"
-
+    restart: always  
+    
   horizon:
     image: rethinkdb/horizon
     container_name: horizon
-    command: su -s /bin/sh horizon -c "hz serve --dev --connect rethinkdb://rethinkdb:28015 --secure=no  --bind all --allow-anonymous=yes /usr/app"
+    command: su -s /bin/sh horizon -c "hz serve --dev --connect rethinkdb://rethinkdb:28015  --bind all /usr/app"
     volumes:
       - "./:/usr/app"
     links:
@@ -21,3 +22,4 @@ services:
       - rethinkdb         
     ports:
       - "8181:8181"
+    restart: always  

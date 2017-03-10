@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "backend": "hz serve --dev",
     "prestage": "npm run doc:down -s",
     "stage": "npm run doc -s",
     "doc:init": "docker-terminal docker info",

@@ -1,33 +1,58 @@
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import Horizon from "@horizon/client";
+import {HorizonInstance, Collection} from "./horizon.types";
 
-import { Observable } from 'rxjs/Observable';
-import {Horizon, HorizonInstance, Collection}  from '@horizon/client';
-
-
-
-
-
+@Injectable()
 export class HorizonService {
 
-  horizon: HorizonInstance;
-  collection: Collection;
-  avatar_url = `http://api.adorable.io/avatars/50/${new Date().getMilliseconds()}.png`;
 
-  constructor() {
-    this.horizon = Horizon({host: '192.168.99.100:8181'});
 
-    this.collection = this.horizon('myData');
-  }
-  getData(): Observable<any> {
-    return this.collection.watch()
-    // .order(['datetime'], 'descending')
-      // .limit(8)
+  private horizon: HorizonInstance;
 
+  get status() :Observable<any>{
+    return this.horizon.status();
   }
 
-   sendData(doc: any): Observable<any> {
+  retrieve(): Observable<any> {
+    return this.collection
+            // .order(['datetime'], 'descending')
+            // .limit(8)
+            .fetch()
+
+  }
+
+  delete = (doc: any): Observable<any> => {
+    return this.collection.remove(doc);
+  }
+
+  add = (doc: any): Observable<any> => {
     return this.collection.store(doc);
   }
+
+  update = (doc: any): Observable<any> => {
+    return this.collection.update(doc);
+  }
+
+
+  get collection():Collection{
+
+    return this.horizon('myData');
+  }
+
+  constructor() {
+
+    this.horizon = Horizon({
+      host: '192.168.99.100:8181',
+      lazyWrites: true
+    });
+    this.horizon.connect()
+/*    this.horizon.onReady()
+      .do( _ => {  })
+      .do( connection => { console.log('connection', connection) })*/
+  }
 }
+
 
 
 /*
