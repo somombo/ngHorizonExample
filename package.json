@@ -12,6 +12,7 @@
     "backend": "hz serve --dev",
     "prestage": "npm run doc:down -s",
     "stage": "npm run doc -s",
+    "prostage": "npm run start -s",
     "doc:init": "docker-terminal docker info",
     "postdoc:init": "npm run doc -s",
     "doc:full": "npm run doc -s -- --no-cache",
